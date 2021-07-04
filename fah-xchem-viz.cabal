@@ -1,0 +1,39 @@
+cabal-version:      2.4
+name:               fah-xchem-viz
+version:            0.1.0.0
+license:            MIT
+license-file:       LICENSE
+author:             Matt Wittmann
+maintainer:         mcwitt@gmail.com
+extra-source-files: CHANGELOG.md
+
+common base
+  default-language: Haskell2010
+  build-depends:
+    , base        ^>=4.14.1.0
+    , containers
+
+library
+  import:          base
+  hs-source-dirs:  src
+  exposed-modules:
+    FahXChem.CompoundSeriesAnalysis
+    FahXChem.Loader
+    FahXChem.Server
+
+  build-depends:
+    , aeson
+    , bytestring
+    , servant         ^>=0.18.2
+    , servant-server
+    , text
+    , wai
+    , warp
+
+executable fah-xchem-viz
+  import:         base
+  main-is:        Main.hs
+  hs-source-dirs: app
+  build-depends:
+    , fah-xchem-viz
+    , optparse-generic
